@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Consulta de Mantissa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #333;
+    }
+    input {
+      padding: 10px;
+      font-size: 18px;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .resultado {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #007BFF;
+    }
+  </style>
+</head>
+<body>
+  <h1>Consulta da Mantissa de log(x)</h1>
+  <p>Digite um número positivo:</p>
+  <input type="number" id="numero" oninput="calcularMantissa()" placeholder="Ex: 3210" min="0" step="any" />
+  <div class="resultado" id="saida"></div>
+
+  <script>
+    function calcularMantissa() {
+      const input = document.getElementById("numero").value;
+      const output = document.getElementById("saida");
+
+      const num = parseFloat(input);
+
+      if (isNaN(num) || num <= 0) {
+        output.textContent = "Digite um número positivo válido.";
+        return;
+      }
+
+      const logValor = Math.log10(num);
+      const mantissa = logValor - Math.floor(logValor);
+
+      output.textContent = `Mantissa de log(${num}) ≈ ${mantissa.toFixed(4)}`;
+    }
+  </script>
+</body>
+</html>
